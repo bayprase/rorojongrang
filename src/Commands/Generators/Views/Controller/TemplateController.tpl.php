@@ -14,7 +14,7 @@ class {{templateName}} extends BaseController{
     }
 
     public function {{templateName}}(){
-        $this->template->createDashboard(menus("templateName", [
+        $this->template->createDashboard(menus("{{templateName}}", [
             'showDataUsers'     => $this->crud->readData(model('M_Users')),
             'showDataInventory' => $this->crud->readData(model('M_Inventory')),
             'showTableJoin'     => $this->crud->joinTable(
