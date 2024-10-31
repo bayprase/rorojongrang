@@ -31,12 +31,18 @@ class GenerateTemplate extends BaseCommand
         $baseControllerTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Controller/TemplateBaseController.tpl.php';
         $helperTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Helpers/TemplateHelper.tpl.php';
         $routesTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Routes/TemplateRoutes.tpl.php';
+        $modelUsersTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Models/M_Users.tpl.php';
+        $modelInventoryTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Models/M_Inventory.tpl.php';
+        $modelDistibutionTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Models/M_Distribution.tpl.php';
 
         $viewDestinationPath = APPPATH . 'Views/' . $templateName . '.php';
         $controllerDestinationPath = APPPATH . 'Controllers/' . $templateName . '.php';
         $baseControllerDestinationPath = APPPATH . 'Controllers/BaseController.php';
         $helperDestinationPath = APPPATH . 'Helpers/' . $templateName . '_helper.php';
         $routesDestinationPath = APPPATH . 'Config/Routes.php';
+        $m_UsersDestinationPath = APPPATH . 'Config/M_Users.php';
+        $m_InventoryDestinationPath = APPPATH . 'Config/M_Inventory.php';
+        $m_DistributionDestinationPath = APPPATH . 'Config/M_Distribution.php';
 
         // Check if the view template already exists
         if (file_exists($viewDestinationPath) || file_exists($controllerDestinationPath)) {
@@ -52,6 +58,9 @@ class GenerateTemplate extends BaseCommand
         $this->generateFile($helperTemplate, $helperDestinationPath, ['{{templateName}}' => $templateName]);
         $this->generateFile($baseControllerTemplate, $baseControllerDestinationPath, ['{{templateName}}' => $templateName]);
         $this->generateFile($routesTemplate, $routesDestinationPath, ['{{templateName}}' => $templateName]);
+        $this->generateFile($modelUsersTemplate, $m_UsersDestinationPath, ['{{templateName}}' => $templateName]);
+        $this->generateFile($modelInventoryTemplate, $m_InventoryDestinationPath, ['{{templateName}}' => $templateName]);
+        $this->generateFile($modelDistibutionTemplate, $m_DistributionDestinationPath, ['{{templateName}}' => $templateName]);
 
         CLI::write("Files for template '{$templateName}' created successfully!", 'green');
     }
