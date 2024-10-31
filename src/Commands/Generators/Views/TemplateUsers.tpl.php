@@ -5,36 +5,26 @@
 			<div class="card w-100">
 				<div class="card-body p-4">
 					<div class="mb-4 d-flex justify-content-between">
-						<h5 class="card-title fw-semibold">Add Data Inventory</h5>
+						<h5 class="card-title fw-semibold">Add User</h5>
 						<span class="badge bg-primary fw-semibold" id="tambahPengguna">Clear</span>
 					</div>
 					<div class="mb-4">
 						<p class="text-muted">*Note: Kosongkan foto jika tidak akan merubah foto produk</p>
 						<hr>
 					</div>
-					<form action="<?= base_url('dashboard/administrator/addInventory') ?>" method="post" id="form" enctype="multipart/form-data">
-						<input type="text" id="inventory" name="id_inventory" hidden>
+					<form action="<?= base_url('admin/addProducts') ?>" method="post" id="form" enctype="multipart/form-data">
+						<input type="text" name="fullname" class="form-control" id="fullname" readonly hidden>
+						<label class="mb-2" for="fullname">Fullname</label>
+						<input type="text" id="fullname" name="fullname" class="form-control mb-3" placeholder="Fullname" required>
 
-						<label class="mb-2" for="type">Type</label>
-						<input type="text" id="type" name="type" class="form-control mb-3" placeholder="Type" required>
+						<label class="mb-2" for="entryCode">Entry Code</label>
+						<input type="text" id="entryCode" name="entryCode" class="form-control mb-3" placeholder="Entry Code" required>
 
-						<label class="mb-2" for="brand">Brand</label>
-						<input type="text" id="brand" name="brand" class="form-control mb-3" placeholder="Brand" required>
+						<label class="mb-2" for="division">Division</label>
+						<input type="text" id="division" name="division" class="form-control mb-3" placeholder="Division" required>
 
-						<label class="mb-2" for="stock">Stock</label>
-						<input type="text" id="stock" name="stock" class="form-control mb-3" placeholder="Stock" required>
 
-						<label class="mb-2" for="file">Product Photo</label>
-						<input type="file" id="file" name="file" class="form-control mb-3" placeholder="file" required>
-						<img src="" alt="img products" id="previewImg" class="w-100 mb-3 rounded border border-4 border-info" hidden>
-
-						<label class="mb-2" for="status">Status</label>
-						<select class="form-select mb-3" id="status" name="status">
-							<option value="makanan">Makanan</option>
-							<option value="minuman">Minuman</option>
-						</select>
-
-						<button class="btn btn-success w-100" id="btnTrigger">Add Data Inventory</button>
+						<button class="btn btn-success w-100" id="btnTrigger">Add User</button>
 					</form>
 				</div>
 			</div>
@@ -42,7 +32,7 @@
 		<div class="col-lg-8 d-flex align-items-stretch">
 			<div class="card w-100">
 				<div class="card-body p-4">
-					<h5 class="card-title fw-semibold mb-4">List Data Inventory</h5>
+					<h5 class="card-title fw-semibold mb-4">List Data Users</h5>
 					<div class="table-responsive">
 						<table class="table text-nowrap mb-0 align-middle">
 							<thead class="text-dark fs-4">
@@ -51,19 +41,13 @@
 										<h6 class="fw-semibold mb-0">No</h6>
 									</th>
 									<th class="border-bottom-0">
-										<h6 class="fw-semibold mb-0">Type</h6>
+										<h6 class="fw-semibold mb-0">Fullname</h6>
 									</th>
 									<th class="border-bottom-0">
-										<h6 class="fw-semibold mb-0">Brand</h6>
+										<h6 class="fw-semibold mb-0">Entry Code</h6>
 									</th>
 									<th class="border-bottom-0">
-										<h6 class="fw-semibold mb-0">Stock</h6>
-									</th>
-									<th class="border-bottom-0">
-										<h6 class="fw-semibold mb-0">Image</h6>
-									</th>
-									<th class="border-bottom-0">
-										<h6 class="fw-semibold mb-0">Status</h6>
+										<h6 class="fw-semibold mb-0">Division</h6>
 									</th>
 									<th class="border-bottom-0">
 										<h6 class="fw-semibold mb-0">Action</h6>
@@ -71,44 +55,34 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach($showData as $indexing => $product){ ?>
+								<?php foreach($showData as $indexing => $item){ ?>
 								<tr>
 									<td class="border-bottom-0 align-middle"><h6 class="fw-semibold mb-0"><?= $indexing+1 ?></h6></td>
 									<td class="border-bottom-0 align-middle">
-										<h5 class="fw-bolder mb-1"><?= $product['type'] ?></h5>
+										<h5 class="fw-bolder mb-1"><?= $item['fullname'] ?></h5>
 									</td>
 									<td class="border-bottom-0 align-middle">
-										<h6 class="fw-normal mb-1"><?= $product['brand'] ?></h6>
-									</td>
-									<td class="border-bottom-0 align-middle">
-										<div class="d-flex align-items-center gap-2">
-											<span class="mb-0 fw-normal"><?= $product['stock'] ?></span>
-										</div>
+										<h6 class="badge bg-success fw-normal mb-1"><?= $item['entryCode'] ?></h6>
 									</td>
 									<td class="border-bottom-0 align-middle">
 										<div class="d-flex align-items-center gap-2">
-											<img src="<?= base_url('assets/imageInventory/'.$product['image']) ?>" class="m-0 img-fluid" alt="Image Product">
+											<span class="mb-0 fw-normal"><?= $item['division'] ?></span>
 										</div>
 									</td>
 									<td class="border-bottom-0 align-middle">
-										<div class="d-flex align-items-center gap-2">
-											<span class="mb-0 fw-normal"><?= $product['status'] ?></span>
-										</div>
-									</td>
-									<td class="border-bottom-0 align-middle">
-										<button type="button" class="btn btn-sm btn-warning" id="ubahData" data-id_inventory="<?= $product['id_inventory'] ?>" data-type="<?= $product['type'] ?>" data-brand="<?= $product['brand'] ?>" data-stock="<?= $product['stock'] ?>" data-status="<?= $product['status'] ?>">Ubah</button>
-										<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $product['id_inventory'] ?>">Hapus</button>
+										<button type="button" class="btn btn-sm btn-warning" id="ubahData" data-id_products="/*id_product*/" data-fullname="/*product_name*/" data-price_product="/*price*/" data-category="/*Category*/" data-stok="/*Stock_Product*/">Ubah</button>
+										<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus/*id_product*/">Hapus</button>
 									</td>
 								</tr>
-								<div class="modal fade" id="modalHapus<?= $product['id_inventory'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="modalHapus/*id_product*/" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title">Confirm your deleted data inventory</h5>
+												<h5 class="modal-title">Confirm your deleted data users</h5>
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											</div>
 											<div class="modal-body">
-												<h3>Yakin ingin menghapus <b><?= $product['type'] ?> - <?= $product['brand'] ?></b> ?</h3>
+												<h3>Yakin ingin menghapus <b>/*PRODUCT NAME*/</b> ?</h3>
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -139,26 +113,28 @@
 	}
 
 	document.querySelector("#tambahPengguna").addEventListener('click', () => {
-		document.querySelector("#inventory").value = ""
-		document.querySelector("#type").value = ""
-		document.querySelector("#brand").value = ""
-		document.querySelector("#stock").value = ""
-		document.querySelector("#status").value = "makanan"
-		document.querySelector("#form").action = "<?= base_url('dashboard/administrator/addInventory') ?>"
+		document.querySelector("#fullname").value = ""
+		document.querySelector("#entryCode").value = ""
+		document.querySelector("#division").value = ""
+		// document.querySelector("#selectCat").value = "makanan"
+		// document.querySelector("#stok").value = ""
+		document.querySelector("#form").action = "<?= base_url('admin/addProducts') ?>"
 		document.querySelector("#btnTrigger").innerHTML = "Add User"
 		document.querySelector("#btnTrigger").setAttribute("class", "btn btn-success w-100")
+		// document.querySelector("#file").setAttribute("required", "true")
 	})
 
 	ubahData.forEach(n => {
 		n.addEventListener('click', () => {
-			document.querySelector("#inventory").value = n.getAttribute("data-id_inventory")
-			document.querySelector("#type").value = n.getAttribute("data-type")
-			document.querySelector("#brand").value = n.getAttribute("data-brand")
-			document.querySelector("#stock").value = n.getAttribute("data-stock")
-			document.querySelector("#status").value = n.getAttribute("data-status")
-			document.querySelector("#form").action = "<?= base_url('dashboard/administrator/editInventory') ?>"
+			// document.querySelector("#id_product").value = n.getAttribute("data-id_products")
+			document.querySelector("#fullname").value = n.getAttribute("data-fullname")
+			document.querySelector("#entryCode").value = n.getAttribute("data-entryCode")
+			document.querySelector("#division").value = n.getAttribute("data-division")
+			// document.querySelector("#stok").value = n.getAttribute("data-stok")
+			document.querySelector("#form").action = "<?= base_url('admin/editProducts') ?>"
 			document.querySelector("#btnTrigger").innerHTML = "Edit User"
 			document.querySelector("#btnTrigger").setAttribute("class", "btn btn-warning w-100")
+			// document.querySelector("#file").removeAttribute("required")
 		})
 	})
 </script>

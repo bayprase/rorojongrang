@@ -1,14 +1,4 @@
 <?= session()->getFlashdata("validation") ?>
-<?php 
-                if(session()->getFlashdata("message_failed")){
-                    echo '<div class="alert alert-danger w-100 pt-4">'.session()->getFlashdata("message_failed") .'</div>';
-                }else if(session()->getFlashdata("message_success")){
-                    echo '<div class="alert alert-success w-100 pt-3">'.session()->getFlashdata("message_success").'</div>';
-                }else if(session()->getFlashdata("message_warning")){
-                    echo '<div class="alert alert-warning w-100 pt-3">'.session()->getFlashdata("message_warning").'</div>';
-                }
-                
-            ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-4 d-flex align-items-stretch">
