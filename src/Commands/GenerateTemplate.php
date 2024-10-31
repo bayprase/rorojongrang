@@ -40,9 +40,9 @@ class GenerateTemplate extends BaseCommand
         $baseControllerDestinationPath = APPPATH . 'Controllers/BaseController.php';
         $helperDestinationPath = APPPATH . 'Helpers/' . $templateName . '_helper.php';
         $routesDestinationPath = APPPATH . 'Config/Routes.php';
-        $m_UsersDestinationPath = APPPATH . 'Config/M_Users.php';
-        $m_InventoryDestinationPath = APPPATH . 'Config/M_Inventory.php';
-        $m_DistributionDestinationPath = APPPATH . 'Config/M_Distribution.php';
+        $m_UsersDestinationPath = APPPATH . 'Models/M_Users.php';
+        $m_InventoryDestinationPath = APPPATH . 'Models/M_Inventory.php';
+        $m_DistributionDestinationPath = APPPATH . 'Models/M_Distribution.php';
 
         // Check if the view template already exists
         if (file_exists($viewDestinationPath) || file_exists($controllerDestinationPath)) {
