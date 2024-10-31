@@ -100,3 +100,42 @@ if(!function_exists("alerts")){
 		session()->setFlashdata("validation", $message, 300);
 	}
 }
+
+if(!function_exists("alerts_success")){
+	function alerts_success($msg){
+		$message = "
+				<div class='modal fade' id='myModal' tabindex='-1' aria-labelledby='myModalLabel' aria-hidden='true'>
+				  <div class='modal-dialog'>
+				    <div class='modal-content' style='border: 2px solid lightgreen'>
+				      <div class='modal-header'>
+				        <h3 class='modal-title' id='myModalLabel' style='color: lightgreen'>Hoorayy!!</h3>
+				        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+				        <hr>
+				      </div>
+				      <div class='modal-body'>
+					      <table>
+					      	<tr>
+					      		<th>
+					      			<h5 style='text-align: justify'>".$msg."</h5>
+					      		</th>
+					      	</tr>
+					      </table>
+				      </div>
+				      <div class='modal-footer'>
+				        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<script>
+				    document.addEventListener('DOMContentLoaded', function () {
+				        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+				            keyboard: false
+				        });
+				        myModal.show();
+				    });
+				</script>
+			";
+		session()->setFlashdata("validation", $message, 300);
+	}
+}
