@@ -56,20 +56,47 @@ if (!function_exists("menus")) {
 	}
 }
 
-if(!function_exists("alert_success")){
-	function alert_success($content){
-		session()->setFlashdata("message_success", $content);
-	}
-}
-
-if(!function_exists("alert_failed")){
-	function alert_failed($content){
-		session()->setFlashdata("message_failed", $content, 1);
-	}
-}
-
-if(!function_exists("alert_warning")){
-	function alert_warning($content){
-		session()->setFlashdata("message_warning", $content);
+if(!function_exists("alerts")){
+	function alerts($error){
+		$message = "
+				<div class='modal fade' id='myModal' tabindex='-1' aria-labelledby='myModalLabel' aria-hidden='true'>
+				  <div class='modal-dialog'>
+				    <div class='modal-content' style='border: 2px solid red'>
+				      <div class='modal-header'>
+				        <h3 class='modal-title' id='myModalLabel' style='color: red'>Whoops!!</h3>
+				        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+				        <hr>
+				      </div>
+				      <div class='modal-body'>
+					      <table>
+					      	<tr>
+					      		<th>
+					      			<h5 style='text-align: justify'>Double check each field whether there is data or not.</h5>
+					      		</th>
+					      	</tr>
+					      	<tr>
+					      		<td style='color: red'>Data not filled in:</td>
+					      	</tr>
+					      	<tr>
+					      		<td style='text-indent: .5rem; color: orange'>".$error."</td>
+					      	</tr>
+					      </table>
+				      </div>
+				      <div class='modal-footer'>
+				        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<script>
+				    document.addEventListener('DOMContentLoaded', function () {
+				        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+				            keyboard: false
+				        });
+				        myModal.show();
+				    });
+				</script>
+			";
+		session()->setFlashdata("validation", $message, 300);
 	}
 }
