@@ -56,8 +56,8 @@ if (!function_exists("menus")) {
 	}
 }
 
-if(!function_exists("alerts")){
-	function alerts($error){
+if(!function_exists("alerts_error")){
+	function alerts_error($error){
 		$message = "
 				<div class='modal fade' id='myModal' tabindex='-1' aria-labelledby='myModalLabel' aria-hidden='true'>
 				  <div class='modal-dialog'>
