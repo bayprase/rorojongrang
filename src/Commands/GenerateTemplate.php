@@ -27,6 +27,8 @@ class GenerateTemplate extends BaseCommand
 
         // Define paths for the templates and destination files
         $viewTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/TemplateDashboard.tpl.php';
+        $inventoryTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/TemplateInventory.tpl.php';
+        $usersTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/TemplateUsers.tpl.php';
         $controllerTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Controller/TemplateController.tpl.php';
         $baseControllerTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Controller/TemplateBaseController.tpl.php';
         $helperTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Helpers/TemplateHelper.tpl.php';
@@ -36,6 +38,8 @@ class GenerateTemplate extends BaseCommand
         $modelDistibutionTemplate = APPPATH . '../vendor/rorojongrang/bayu-prasetyo/src/Commands/Generators/Views/Models/M_Distribution.tpl.php';
 
         $viewDestinationPath = APPPATH . 'Views/' . $templateName . '.php';
+        $inventoryDestinationPath = APPPATH . 'Views/inventory.php';
+        $usersDestinationPath = APPPATH . 'Views/users.php';
         $controllerDestinationPath = APPPATH . 'Controllers/' . $templateName . '.php';
         $baseControllerDestinationPath = APPPATH . 'Controllers/BaseController.php';
         $helperDestinationPath = APPPATH . 'Helpers/' . $templateName . '_helper.php';
@@ -52,12 +56,20 @@ class GenerateTemplate extends BaseCommand
 
         // Create the view file
         $this->generateFile($viewTemplate, $viewDestinationPath, ['{{templateName}}' => $templateName]);
+        $this->generateFile($inventoryTemplate, $inventoryDestinationPath, ['{{templateName}}' => $templateName]);
+        $this->generateFile($usersTemplate, $usersDestinationPath, ['{{templateName}}' => $templateName]);
         
         // Create the controller file
         $this->generateFile($controllerTemplate, $controllerDestinationPath, ['{{templateName}}' => $templateName]);
-        $this->generateFile($helperTemplate, $helperDestinationPath, ['{{templateName}}' => $templateName]);
         $this->generateFile($baseControllerTemplate, $baseControllerDestinationPath, ['{{templateName}}' => $templateName]);
+
+        // create the helpers file
+        $this->generateFile($helperTemplate, $helperDestinationPath, ['{{templateName}}' => $templateName]);
+
+        // create the routes file
         $this->generateFile($routesTemplate, $routesDestinationPath, ['{{templateName}}' => $templateName]);
+
+        // create the models file
         $this->generateFile($modelUsersTemplate, $m_UsersDestinationPath, ['{{templateName}}' => $templateName]);
         $this->generateFile($modelInventoryTemplate, $m_InventoryDestinationPath, ['{{templateName}}' => $templateName]);
         $this->generateFile($modelDistibutionTemplate, $m_DistributionDestinationPath, ['{{templateName}}' => $templateName]);
