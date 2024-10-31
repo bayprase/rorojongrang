@@ -12,7 +12,7 @@
 						<p class="text-muted">*Note: Kosongkan foto jika tidak akan merubah foto produk</p>
 						<hr>
 					</div>
-					<form action="<?= base_url('admin/addProducts') ?>" method="post" id="form" enctype="multipart/form-data">
+					<form action="<?= base_url('administrator/addUsers') ?>" method="post" id="form" enctype="multipart/form-data">
 						<input type="text" name="fullname" class="form-control" id="fullname" readonly hidden>
 						<label class="mb-2" for="fullname">Fullname</label>
 						<input type="text" id="fullname" name="fullname" class="form-control mb-3" placeholder="Fullname" required>
@@ -22,7 +22,6 @@
 
 						<label class="mb-2" for="division">Division</label>
 						<input type="text" id="division" name="division" class="form-control mb-3" placeholder="Division" required>
-
 
 						<button class="btn btn-success w-100" id="btnTrigger">Add User</button>
 					</form>
@@ -118,7 +117,7 @@
 		document.querySelector("#division").value = ""
 		// document.querySelector("#selectCat").value = "makanan"
 		// document.querySelector("#stok").value = ""
-		document.querySelector("#form").action = "<?= base_url('admin/addProducts') ?>"
+		document.querySelector("#form").action = "<?= base_url('administrator/addUsers') ?>"
 		document.querySelector("#btnTrigger").innerHTML = "Add User"
 		document.querySelector("#btnTrigger").setAttribute("class", "btn btn-success w-100")
 		// document.querySelector("#file").setAttribute("required", "true")
@@ -131,7 +130,7 @@
 			document.querySelector("#entryCode").value = n.getAttribute("data-entryCode")
 			document.querySelector("#division").value = n.getAttribute("data-division")
 			// document.querySelector("#stok").value = n.getAttribute("data-stok")
-			document.querySelector("#form").action = "<?= base_url('admin/editProducts') ?>"
+			document.querySelector("#form").action = "<?= base_url('administrator/editUsers') ?>"
 			document.querySelector("#btnTrigger").innerHTML = "Edit User"
 			document.querySelector("#btnTrigger").setAttribute("class", "btn btn-warning w-100")
 			// document.querySelector("#file").removeAttribute("required")
