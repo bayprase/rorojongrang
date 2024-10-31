@@ -1,0 +1,27 @@
+{
+	"name": "rorojongrang/bayu-prasetyo",
+	"description": "This is a lighting package for Codeigniter 4",
+	"type": "library",
+	"author": [
+		{
+			"name": "Bayu Prasetyo",
+			"email": "bayuprasetyo.bp11@gmail.com"
+		}
+	],
+	"require": {
+		"php": "^7.4 || ^8.0"
+	},
+	"require-dev": {
+		"codeigniter4/codeigniter4-standard": "^1.0",
+		"codeigniter4/framework": "^4.0"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Rorojongrang\\": "src/"
+		}
+	},
+	
+	"license": "MIT"
+}
